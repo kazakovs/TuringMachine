@@ -3,7 +3,7 @@ package net.kazakovs;
 /**
  * Created by reefer on 24.10.16.
  */
-public class  Tape <T> {
+class Tape <T> {
 
     private int size;
     private T[] tape;
