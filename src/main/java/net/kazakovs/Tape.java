@@ -1,5 +1,7 @@
 package net.kazakovs;
 
+import java.util.Arrays;
+
 /**
  * Created by reefer on 24.10.16.
  */
@@ -8,6 +10,7 @@ class Tape <T> {
     private int size;
     private T[] tape;
     private int currentPos;
+    private T blankSym;
 
     private Tape(){
 
@@ -15,6 +18,7 @@ class Tape <T> {
 
     public Tape(int size, T blankSym, T[] initialWords){
         this.size = size;
+        this.blankSym = blankSym;
         tape = (T[]) new Object[size];
         currentPos = 0;
         int j;
@@ -57,4 +61,11 @@ class Tape <T> {
         }
     }
 
+    @Override
+    public String toString() {
+        return "tape=" + Arrays.toString(Arrays.
+                                            stream(tape).
+                                            filter(t -> !t.equals(this.blankSym)).
+                                            toArray(size -> (T[])new Object[size]));
+    }
 }
