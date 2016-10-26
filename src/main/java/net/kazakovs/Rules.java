@@ -57,6 +57,15 @@ class Rules<T> {
         return rules.get(new Pair(currentState, currentSymbol)).getDirection();
     }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for (Pair p : rules.keySet()) {
+            sb.append(p + "\t=>\t" + rules.get(p) + "\n");
+        }
+        return sb.toString();
+    }
+
     private class Pair{
         private int state;
         private T symbol;
@@ -82,6 +91,11 @@ class Rules<T> {
             int result = state;
             result = 31 * result + (symbol != null ? symbol.hashCode() : 0);
             return result;
+        }
+
+        @Override
+        public String toString() {
+            return state + "/" + symbol;
         }
     }
 
@@ -126,6 +140,11 @@ class Rules<T> {
             result = 31 * result + direction;
             result = 31 * result + (symbol != null ? symbol.hashCode() : 0);
             return result;
+        }
+
+        @Override
+        public String toString() {
+            return state + "/" + direction + "/" + symbol;
         }
     }
 
