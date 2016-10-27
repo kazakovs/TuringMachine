@@ -23,31 +23,17 @@ public class Machine<T> {
 
     public Machine(String filename, T blankSym, T[] symbols){
         this(1, blankSym, symbols);
-        String[] rules = parseFile(filename);
+        String[] rules = Utils.parseFile(filename);
         this.rules = new Rules(rules);
     }
 
     public Machine(InputStream inputStream, T blankSym, T[] symbols) {
         this(1, blankSym, symbols);
-        String[] rules = parseFile(inputStream);
+        String[] rules = Utils.parseFile(inputStream);
         this.rules = new Rules(rules);
     }
 
-    private String[] parseFile(InputStream in){
-        BufferedReader br = new BufferedReader(new InputStreamReader(in));
-        return br.lines().toArray(size -> new String[size]);
-    }
 
-    private String[] parseFile(String filename) {
-        InputStream in = null;
-        try {
-            in = new FileInputStream(filename);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return parseFile(in);
-
-    }
 
     public int getCurrentState(){
         return currentState;
