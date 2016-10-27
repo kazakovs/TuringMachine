@@ -27,15 +27,19 @@ public class Machine<T> {
         this.rules = new Rules(rules);
     }
 
+    private String[] parseFile(InputStream in){
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        return br.lines().toArray(size -> new String[size]);
+    }
+
     private String[] parseFile(String filename) {
-        BufferedReader bufferedReader = null;
+        InputStream in = null;
         try {
-            bufferedReader = new BufferedReader(new FileReader(new File(filename)));
+            in = new FileInputStream(filename);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        return bufferedReader.lines().toArray(size -> new String[size]);
+        return parseFile(in);
 
     }
 
